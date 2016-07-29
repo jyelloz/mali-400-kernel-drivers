@@ -30,6 +30,10 @@
 #include <asm/cacheflush.h>
 #include <linux/dma-mapping.h>
 
+#ifndef VM_RESERVED
+#define VM_RESERVED (VM_DONTEXPAND | VM_DONTDUMP)
+#endif
+
 typedef struct ump_vma_usage_tracker
 {
 	atomic_t references;
