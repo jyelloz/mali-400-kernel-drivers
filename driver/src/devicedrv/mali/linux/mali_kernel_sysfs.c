@@ -46,6 +46,22 @@
 #include "mali_user_settings_db.h"
 #include "mali_device_pause_resume.h"
 
+#ifndef strict_strtoul
+#define strict_strtoul  kstrtoul
+#endif
+
+#ifndef strict_strtol
+#define strict_strtol   kstrtol
+#endif
+
+#ifndef strict_strtoull
+#define strict_strtoull kstrtoull
+#endif
+
+#ifndef strict_strtoll
+#define strict_strtoll  kstrtoll
+#endif
+
 #define POWER_BUFFER_SIZE 3
 
 static struct dentry *mali_debugfs_dir = NULL;
