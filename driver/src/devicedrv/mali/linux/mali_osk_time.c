@@ -16,6 +16,7 @@
 #include "mali_osk.h"
 #include <linux/jiffies.h>
 #include <linux/time.h>
+#include <linux/ktime.h>
 #include <asm/delay.h>
 
 int	_mali_osk_time_after( u32 ticka, u32 tickb )
