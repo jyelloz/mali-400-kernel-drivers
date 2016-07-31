@@ -28,10 +28,10 @@
 _mali_osk_errcode_t _mali_osk_specific_indirect_mmap( _mali_uk_mem_mmap_s *args )
 {
 	/* args->ctx ignored here; args->ukk_private required instead */
-	/* we need to lock the mmap semaphore before calling the do_mmap function */
+	/* we need to lock the mmap semaphore before calling the vm_mmap function */
     down_write(&current->mm->mmap_sem);
 
-    args->mapping = (void __user *)do_mmap(
+    args->mapping = (void __user *)vm_mmap(
 											(struct file *)args->ukk_private,
 											0, /* start mapping from any address after NULL */
 											args->size,
@@ -66,10 +66,9 @@ _mali_osk_errcode_t _mali_osk_specific_indirect_munmap( _mali_uk_mem_munmap_s *a
 	{
 		/* remove mapping of mali memory from the process' view */
 		/* lock mmap semaphore before call */
-		/* lock mmap_sem before calling do_munmap */
+		/* lock mmap_sem before calling vm_munmap */
 		down_write(&current->mm->mmap_sem);
-		do_munmap(
-					current->mm,
+		vm_munmap(
 					(unsigned long)args->mapping,
 					args->size
 				);
